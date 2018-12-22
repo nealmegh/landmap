@@ -33,7 +33,7 @@
 <input type="hidden" value="{{$lands}}" name="lands" id="lands" >
 <div id="description"></div>
 <script>
-
+{{--    {{dd($lands[0]->geo_points)}}--}}
     // This example creates a simple polygon representing the Bermuda Triangle.
     // When the user clicks on the polygon an info window opens, showing
     // information about the polygon's coordinates.
@@ -50,20 +50,25 @@
 
         var lands = document.getElementById('lands');
         var jobj = JSON.parse(lands.value);
-        console.log(jobj[0]['geo_points']);
+        //console.log(jobj[0]['geo_points']);
         // var latlng = jobj[0]['geo_points'];
         // var vari = latlng.split(';');
-        // console.log(vari);
+        // var jst = JSON.stringify(vari);
+        // // var fob = jst.replace(/["]+/g, '');
+        // var jobj2 = JSON.parse(latlng);
+        // console.log(jobj2);
         // Define the LatLng coordinates for the polygon.
-        // var location_coordinates1 = [
-        //     {lat: 23.79561, lng: 90.36995},
-        //     {lat: 23.79562, lng: 90.37007},
-        //     {lat: 23.79564, lng: 90.37018},
-        //     {lat: 23.7955, lng: 90.37022},
-        //     {lat: 23.79547, lng: 90.37011},
-        //     {lat: 23.79546, lng: 90.36999},
-        //     {lat: 23.79552, lng: 90.36998}
-        // ];
+        //[{lat: 23.79561, lng: 90.36995},{lat: 23.79562, lng: 90.37007},{lat: 23.79564, lng: 90.37018},{lat: 23.7955, lng: 90.37022},{lat: 23.79547, lng: 90.37011},{lat: 23.79546, lng: 90.36999},{lat: 23.79552, lng: 90.36998}]
+        var location_coordinates1 = [
+            {lat: 23.79561, lng: 90.36995},
+            {lat: 23.79562, lng: 90.37007},
+            {lat: 23.79564, lng: 90.37018},
+            {lat: 23.7955, lng: 90.37022},
+            {lat: 23.79547, lng: 90.37011},
+            {lat: 23.79546, lng: 90.36999},
+            {lat: 23.79552, lng: 90.36998}
+        ];
+        // console.log(location_coordinates1);
         //23.79543,90.36981   23.79554,90.36978   23.79552,90.36965  23.79541,90.36967
         // var location_coordinates2 = [
         //     {lat: 23.79543, lng: 90.36981},
@@ -76,12 +81,13 @@
 
         // var custom_address;
         var i;
-        for(i=0; i<1; i++){
+        for(i=0; i<2; i++){
             // Construct the polygon.
             var latlng = jobj[i]['geo_points'];
-            var vari = latlng.split(';');
+            // var vari = latlng.split(';');
+            var jobj2 = JSON.parse(latlng);
             var build_location = new google.maps.Polygon({
-                paths: vari,
+                paths: jobj2,
                 strokeColor: '#FF0000',
                 strokeOpacity: 0.8,
                 strokeWeight: 3,
